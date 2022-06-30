@@ -1,8 +1,17 @@
 import type { NextPage } from 'next';
-import { SideComments } from '../components/SideComments';
+import { MainLayout } from '../layouts/MainLayout';
+import { Post } from '../components/Post';
 
 const Home: NextPage = () => {
-  return <SideComments />;
+  return (
+    <MainLayout>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </MainLayout>
+  );
 };
 
 export default Home;
