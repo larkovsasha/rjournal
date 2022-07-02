@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Typography, IconButton, MenuItem, Menu } from '@material-ui/core';
 import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 
@@ -18,15 +18,14 @@ export const Comment: React.FC<CommentPostProps> = ({
   text,
   createdAt,
 }) => {
-  const menuAnchorRef = useRef(null);
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event: React.MouseEvent) => {
-    setIsOpen(true);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setIsOpen(false);
+    setAnchorEl(null);
   };
 
   return (
@@ -38,13 +37,13 @@ export const Comment: React.FC<CommentPostProps> = ({
       </div>
       <Typography className={styles.text}>{text}</Typography>
       <span className={styles.replyBtn}>Ответить</span>
-      <IconButton onClick={handleClick} ref={menuAnchorRef}>
+      <IconButton onClick={handleClick}>
         <MoreIcon />
       </IconButton>
       <Menu
-        anchorEl={menuAnchorRef.current}
+        anchorEl={anchorEl}
         elevation={2}
-        open={isOpen}
+        open={Boolean(anchorEl)}
         onClose={handleClose}
         keepMounted
       >

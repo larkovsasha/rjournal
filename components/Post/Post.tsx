@@ -8,11 +8,7 @@ import { PostActions } from '../PostActions';
 
 export const Post: React.FC = () => {
   return (
-    <Paper
-      elevation={0}
-      classes={{ root: styles.paper }}
-      style={{ padding: '20px' }}
-    >
+    <Paper elevation={0} className="p-20" classes={{ root: styles.paper }}>
       <Typography variant="h5" className={styles.title}>
         <Link href="/news/test-123">
           <a>
@@ -21,7 +17,7 @@ export const Post: React.FC = () => {
           </a>
         </Link>
       </Typography>
-      <Typography style={{ marginTop: '10px', marginBottom: '50px' }}>
+      <Typography className="mt-10 mb-15">
         Пока одни не могли соотнести размеры животного и окружения, другие
         начали создавать апокалиптические сюжеты с котом в главной роли.
       </Typography>

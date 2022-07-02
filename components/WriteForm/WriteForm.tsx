@@ -3,14 +3,13 @@ import { Button, Input } from '@material-ui/core';
 import styles from './WriteForm.module.scss';
 import dynamic from 'next/dynamic';
 
-interface WriteFormProps {
-  title?: string;
-}
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 const Editor = dynamic(() => import('../Editor').then((m) => m.Editor), {
   ssr: false,
 });
+
+interface WriteFormProps {
+  title?: string;
+}
 
 export const WriteForm: React.FC<WriteFormProps> = ({ title }) => {
   return (

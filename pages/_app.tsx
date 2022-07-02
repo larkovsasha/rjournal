@@ -1,12 +1,14 @@
-import '../styles/globals.scss';
-import type { AppProps } from 'next/app';
-import { MuiThemeProvider } from '@material-ui/core';
-import { theme } from '../theme';
 import Head from 'next/head';
-import { CssBaseline } from '@mui/material';
-import { Header } from '../components/Header';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import { Header } from '../components/Header/Header';
+
+import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
+import { theme } from '../theme';
+
+import '../styles/globals.scss';
+import 'macro-css';
+
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>

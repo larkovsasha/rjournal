@@ -1,27 +1,27 @@
-import styles from './SideComments.module.scss';
-import { CommentsItem } from './CommentsItem';
+import React from 'react';
 import ArrowRightIcon from '@material-ui/icons/NavigateNextOutlined';
 
-import data from '../../mock';
-import { useState } from 'react';
+import data from '../../data';
+import styles from './SideComments.module.scss';
+import { CommentItem } from './CommentItem';
 import clsx from 'clsx';
 
 export const SideComments = () => {
-  const [visible, setVisible] = useState<boolean>(true);
+  const [visible, setVisible] = React.useState(true);
 
   const toggleVisible = () => {
-    setVisible((prev) => !prev);
+    setVisible(!visible);
   };
+
   return (
-    <div className={clsx(styles.sideComments, !visible && styles.rotated)}>
+    <div className={clsx(styles.root, !visible && styles.rotated)}>
       <h3 onClick={toggleVisible}>
         Комментарии <ArrowRightIcon />
       </h3>
-      {data.comments.popular.map(
-        (obj): JSX.Element => (
-          <CommentsItem key={obj.id} {...obj} />
-        )
-      )}
+      {visible &&
+        data.comments.popular.map((obj) => (
+          <CommentItem key={obj.id} {...obj} />
+        ))}
     </div>
   );
 };

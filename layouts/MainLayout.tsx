@@ -1,14 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
-import { LeftMenu } from '../components/LeftMenu';
+import { LeftMenu } from '../components/LeftMenu/';
 import { SideComments } from '../components/SideComments';
+import { LayoutProps } from 'next/dist/lib/app-layout';
 
-interface MainLayoutProps {
+interface MainLayoutProps extends LayoutProps {
   hideComments?: boolean;
   hideMenu?: boolean;
   contentFullWidth?: boolean;
   className?: string;
-  children?: JSX.Element[] | JSX.Element;
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({

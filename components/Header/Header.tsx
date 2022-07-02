@@ -1,34 +1,63 @@
-import { IconButton, Paper, Button } from '@material-ui/core';
-import MenuIcon from '@mui/icons-material/Menu';
+import React, { useEffect } from 'react';
+import Link from 'next/link';
+import {
+  Paper,
+  Button,
+  IconButton,
+  Avatar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  DialogActions,
+} from '@material-ui/core';
+import {
+  SearchOutlined as SearchIcon,
+  SmsOutlined as MessageIcon,
+  Menu as MenuIcon,
+  ExpandMoreOutlined as ArrowBottom,
+  NotificationsNoneOutlined as NotificationIcon,
+} from '@material-ui/icons';
 
 import styles from './Header.module.scss';
-import { Logo } from '../Logo';
-import {
-  MessageOutlined,
-  NotificationsOutlined,
-  SearchOutlined,
-  ExpandMoreOutlined as ArrowBottom,
-} from '@material-ui/icons';
-import Link from 'next/link';
-import { Avatar } from '@mui/material';
-export const Header = () => {
+
+export const Header: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Paper classes={{ root: styles.Header }}>
+    <Paper classes={{ root: styles.root }} elevation={0}>
       <div className="d-flex align-center">
         <IconButton>
           <MenuIcon />
         </IconButton>
-
-        <Logo />
+        <Link href="/">
+          <a>
+            <img
+              height={35}
+              className="mr-20"
+              src="/static/img/logo.svg"
+              alt="Logo"
+            />
+          </a>
+        </Link>
 
         <div className={styles.searchBlock}>
-          <SearchOutlined />
+          <SearchIcon />
           <input placeholder="Поиск" />
         </div>
 
         <Link href="/write">
           <a>
-            <Button variant="contained" className={styles.newPost}>
+            <Button variant="contained" className={styles.penButton}>
               Новая запись
             </Button>
           </a>
@@ -36,10 +65,32 @@ export const Header = () => {
       </div>
       <div className="d-flex align-center">
         <IconButton>
-          <MessageOutlined />
+          <MessageIcon />
         </IconButton>
-        <IconButton>
-          <NotificationsOutlined />
+        <IconButton onClick={handleClickOpen}>
+          <NotificationIcon />
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>Subscribe</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                To subscribe to this website, please enter your email address
+                here. We will send updates occasionally.
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Email Address"
+                type="email"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button onClick={handleClose}>Subscribe</Button>
+            </DialogActions>
+          </Dialog>
         </IconButton>
         <Link href="/profile/1">
           <a className="d-flex align-center">

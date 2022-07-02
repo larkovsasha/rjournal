@@ -11,9 +11,9 @@ import {
 } from '@material-ui/core';
 
 import { MainLayout } from '../layouts/MainLayout';
-import { FollowButton } from '../components/FollowButton';
+import { FollowButton } from '../components/FollowButton/FollowButton';
 
-const Rating = () => {
+export default function Rating() {
   return (
     <MainLayout>
       <Paper className="pl-20 pt-20 pr-20 mb-20" elevation={0}>
@@ -64,5 +64,4 @@ const Rating = () => {
       </Paper>
     </MainLayout>
   );
-};
-export default Rating;
+}

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   IconButton,
   Menu,
@@ -25,15 +25,14 @@ export const CommentPost: React.FC<CommentPostProps> = ({
   post,
   text,
 }) => {
-  const menuAnchorRef = useRef(null);
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event: React.MouseEvent) => {
-    setIsOpen(true);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setIsOpen(false);
+    setAnchorEl(null);
   };
 
   return (
@@ -48,10 +47,10 @@ export const CommentPost: React.FC<CommentPostProps> = ({
 
       <Menu
         id="simple-menu"
-        anchorEl={menuAnchorRef.current}
+        anchorEl={anchorEl}
         elevation={3}
         keepMounted
-        open={isOpen}
+        open={Boolean(anchorEl)}
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Удалить</MenuItem>

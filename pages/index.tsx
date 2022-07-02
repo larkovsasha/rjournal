@@ -1,8 +1,7 @@
-import type { NextPage } from 'next';
+import { Post } from '../components/Post/Post';
 import { MainLayout } from '../layouts/MainLayout';
-import { Post } from '../components/Post';
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <MainLayout>
       <Post />
@@ -10,8 +9,7 @@ const Home: NextPage = () => {
       <Post />
       <Post />
       <Post />
+      <Post />
     </MainLayout>
   );
-};
-
-export default Home;
+}
