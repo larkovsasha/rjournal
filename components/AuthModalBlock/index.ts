@@ -1,0 +1,1 @@
+export { AuthModalBlock } from './AuthModalBlock';

@@ -1,36 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import {
-  Paper,
-  Button,
-  IconButton,
-  Avatar,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  TextField,
-  DialogActions,
-} from '@material-ui/core';
+import { Paper, Button, IconButton, Avatar } from '@material-ui/core';
 import {
   SearchOutlined as SearchIcon,
   SmsOutlined as MessageIcon,
   Menu as MenuIcon,
   ExpandMoreOutlined as ArrowBottom,
   NotificationsNoneOutlined as NotificationIcon,
+  SupervisedUserCircleOutlined as UserIcon,
 } from '@material-ui/icons';
 
 import styles from './Header.module.scss';
+import { AuthModalBlock } from '../AuthModalBlock';
 
 export const Header: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
+  const [authVisible, setAuthVisible] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const openAuthDialog = () => {
+    setAuthVisible(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const closeAuthDialog = () => {
+    setAuthVisible(false);
   };
 
   return (
@@ -67,42 +58,26 @@ export const Header: React.FC = () => {
         <IconButton>
           <MessageIcon />
         </IconButton>
-        <IconButton onClick={handleClickOpen}>
+        <IconButton>
           <NotificationIcon />
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Subscribe</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                To subscribe to this website, please enter your email address
-                here. We will send updates occasionally.
-              </DialogContentText>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Email Address"
-                type="email"
-                fullWidth
-                variant="standard"
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Subscribe</Button>
-            </DialogActions>
-          </Dialog>
         </IconButton>
-        <Link href="/profile/1">
-          <a className="d-flex align-center">
-            <Avatar
-              className={styles.avatar}
-              alt="Remy Sharp"
-              src="https://leonardo.osnova.io/5ffeac9a-a0e5-5be6-98af-659bfaabd2a6/-/scale_crop/108x108/-/format/webp/"
-            />
-            <ArrowBottom />
-          </a>
-        </Link>
+        {/*  now user is not auth
+        <Link href="/profile/1">*/}
+        {/*  <a className="d-flex align-center">*/}
+        {/*    <Avatar*/}
+        {/*      className={styles.avatar}*/}
+        {/*      alt="Remy Sharp"*/}
+        {/*      src="https://leonardo.osnova.io/5ffeac9a-a0e5-5be6-98af-659bfaabd2a6/-/scale_crop/108x108/-/format/webp/"*/}
+        {/*    />*/}
+        {/*    <ArrowBottom />*/}
+        {/*  </a>*/}
+        {/* </Link>*/}
+        <div className={styles.loginButton} onClick={openAuthDialog}>
+          <UserIcon />
+          Войти
+        </div>
       </div>
+      <AuthModalBlock isOpen={authVisible} onClose={closeAuthDialog} />
     </Paper>
   );
 };
